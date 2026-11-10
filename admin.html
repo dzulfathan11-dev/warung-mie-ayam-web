@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Warung Mie Ayam Mbak Ana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="warung-mie-ayam.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- ================= 1. LOGIN BACKDROP & FORM ================= -->
+  <div class="login-backdrop" id="loginBackdrop">
+    <div class="login-card">
+      <div class="login-badge-pill">🔒 Portal Khusus Administrator</div>
+      <div class="login-brand-logo">🍜</div>
+      <h2>Warung Mbak Ana</h2>
+      <p class="login-sub">Masuk untuk mengelola pesanan masuk, pantau omset warung, perbarui harga menu, dan foto QRIS.</p>
+
+      <div class="login-error-box" id="loginError">
+        <span>⚠️</span>
+        <span id="loginErrorText">Password salah!</span>
+      </div>
+
+      <div class="login-form-group">
+        <label for="adminPass">Password Admin</label>
+        <div class="login-input-wrap">
+          <span class="login-input-icon">🔒</span>
+          <input type="password" id="adminPass" placeholder="Masukkan password" autocomplete="current-password" autofocus />
+          <button type="button" class="btn-toggle-eye" id="togglePassBtn" title="Lihat Password">👁️</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn-login-submit" id="adminLoginBtn">
+        <span>Masuk ke Panel Admin</span>
+        <span>➔</span>
+      </button>
+
+      <a href="warung-mie-ayam.html" class="login-back-link">
+        <span>←</span>
+        <span>Kembali ke Halaman Utama Warung</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= 2. ADMIN DASHBOARD ================= -->
+  <div class="admin-wrap" id="adminWrap">
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle Menu">☰</button>
+        <div class="topbar-title">🍜 Warung Mie Ayam Mbak Ana</div>
+      </div>
+      <div class="topbar-right">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Online</span>
+        </div>
+        <a href="warung-mie-ayam.html" class="btn-topbar btn-topbar-store" target="_blank" title="Lihat Tampilan Menu Warung">
+          <span>🌐</span>
+          <span>Buka Toko</span>
+        </a>
+        <button type="button" class="btn-topbar btn-topbar-logout" id="logoutBtnTop" title="Keluar dari Panel Admin">
+          <span>🚪</span>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-shell">
+      <!-- Sidebar Navigation -->
+      <aside class="admin-sidebar" id="adminSidebar">
+        <div>
+          <div class="admin-brand">
+            <span>🍜</span>
+            <strong>Mbak Ana Admin</strong>
+          </div>
+
+          <div class="admin-user-card">
+            <div class="user-avatar">👤</div>
+            <div class="user-info">
+              <strong id="displayAdminUser">admin</strong>
+              <span>Super Administrator</span>
+            </div>
+          </div>
+
+          <nav class="admin-nav">
+            <a href="#ringkasan" class="active" data-section="ringkasan">
+              <span class="nav-label"><span>📊</span> Ringkasan</span>
+            </a>
+            <a href="#pesanan" data-section="pesanan">
+              <span class="nav-label"><span>📋</span> Pesanan Masuk</span>
+              <span class="nav-badge" id="sidebarNewCount" style="display:none;">0</span>
+            </a>
+            <a href="#harga" data-section="harga">
+              <span class="nav-label"><span>💰</span> Pengaturan Harga</span>
+            </a>
+            <a href="#qr" data-section="qr">
+              <span class="nav-label"><span>🖼️</span> Foto QRIS</span>
+            </a>
+            <a href="#logout" class="logout-link" id="sidebarLogout">
+              <span class="nav-label"><span>🚪</span> Keluar</span>
+            </a>
+          </nav>
+        </div>
+
+        <div style="padding: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center;">
+          Mie Ayam Mbak Ana v2.0
+        </div>
+      </aside>
+
+      <!-- Main Sections -->
+      <main class="admin-main">
+
+        <!-- SECTION 1: RINGKASAN / OVERVIEW -->
+        <section id="ringkasanView" class="admin-section active">
+          <div class="section-header-box">
+            <span class="section-kicker">Dashboard Ringkasan</span>
+            <h2>Ringkasan Warung Hari Ini</h2>
+            <p>Pantau seluruh aktivitas pemesanan, perputaran omset, dan status pesanan yang masuk.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon omset">💰</div>
+              <div class="stat-info">
+                <span>Total Omset</span>
+                <strong id="statOmset">Rp 0</strong>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon orders">📦</div>
+              <div class="stat-info">
+                <span>Total Pesanan</span>
+                <strong id="statTotalOrders">0</strong>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon pending">🔔</div>
+              <div class="stat-info">
+                <span>Pesanan Baru</span>
+                <strong id="statBaruOrders" style="color:var(--admin-accent);">0</strong>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon done">✅</div>
+              <div class="stat-info">
+                <span>Pesanan Selesai</span>
+                <strong id="statSelesaiOrders" style="color:#059669;">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-actions-row">
+            <button class="btn-quick-action" id="qaViewNewOrders">
+              <span>🔔</span>
+              <span>Lihat Pesanan Baru (<span id="qaNewCount">0</span>)</span>
+            </button>
+            <button class="btn-quick-action" id="qaEditPrices">
+              <span>💰</span>
+              <span>Ubah Harga Menu</span>
+            </button>
+            <button class="btn-quick-action" id="qaUpdateQris">
+              <span>📷</span>
+              <span>Upload Foto QRIS Baru</span>
+            </button>
+          </div>
+
+          <div style="background:#fff; border:1px solid var(--admin-border); border-radius:16px; padding:24px; box-shadow:var(--admin-shadow);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; margin:0; color:var(--admin-brown-dark);">Pesanan Terbaru</h3>
+              <a href="#pesanan" class="btn-action btn-status-toggle" style="font-size:0.8rem; padding:6px 12px;" onclick="switchSection('pesanan')">Lihat Semua Pesanan →</a>
+            </div>
+            <div id="recentOrdersContainer"></div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: PESANAN MASUK -->
+        <section id="pesananView" class="admin-section">
+          <div class="section-header-box">
+            <span class="section-kicker">Manajemen Pesanan</span>
+            <h2>Daftar Pesanan Pelanggan</h2>
+            <p>Kelola pesanan yang masuk secara real-time, perbarui status pengiriman/penyajian, dan hubungi pelanggan.</p>
+          </div>
+
+          <div class="orders-toolbar">
+            <div class="order-filters">
+              <button class="filter-btn active" data-filter="all">Semua (<span id="countAll">0</span>)</button>
+              <button class="filter-btn" data-filter="baru">Baru (<span id="countBaru">0</span>)</button>
+              <button class="filter-btn" data-filter="selesai">Selesai (<span id="countSelesai">0</span>)</button>
+            </div>
+            <div class="order-search-box">
+              <span class="order-search-icon">🔍</span>
+              <input type="text" id="orderSearchInput" placeholder="Cari nama, HP, atau ID..." />
+            </div>
+          </div>
+
+          <div class="orders-list" id="ordersList"></div>
+        </section>
+        <!-- SECTION 3: PENGATURAN HARGA -->
+        <section id="hargaView" class="admin-section">
+          <div class="section-header-box">
+            <span class="section-kicker">Katalog Produk</span>
+            <h2>Pengaturan Harga Menu Warung</h2>
+            <p>Ubah harga menu makanan dan minuman di bawah ini. Harga yang diubah akan langsung terupdate di halaman website pelanggan.</p>
+          </div>
+
+          <div class="price-cards-grid">
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🍜 Mie Ayam</h4>
+                <span class="price-badge-cat">Makanan</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-mie-ayam" value="7000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🍲 Mie So</h4>
+                <span class="price-badge-cat">Makanan</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-mieso" value="8000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🍢 Bakso</h4>
+                <span class="price-badge-cat">Makanan</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-bakso" value="10000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🥣 Soto</h4>
+                <span class="price-badge-cat">Makanan</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-soto" value="6000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🥤 Es Teh Jumbo</h4>
+                <span class="price-badge-cat">Minuman</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-teh-jumbo" value="3000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🍊 Es Jeruk</h4>
+                <span class="price-badge-cat">Minuman</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-es-jeruk" value="3000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>☕ Kopi (Es / Hangat)</h4>
+                <span class="price-badge-cat">Minuman</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-kopi" value="4000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🧃 Juice Buah</h4>
+                <span class="price-badge-cat">Minuman</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-juice" value="7000" min="0" step="500" />
+              </div>
+            </div>
+
+            <div class="price-card-item">
+              <div class="price-item-header">
+                <h4>🥛 Susu (Es / Hangat)</h4>
+                <span class="price-badge-cat">Minuman</span>
+              </div>
+              <div class="price-input-row">
+                <span class="price-prefix">Rp</span>
+                <input type="number" id="edit-susu" value="3000" min="0" step="500" />
+              </div>
+            </div>
+          </div>
+
+          <div class="price-actions-bar">
+            <button class="btn btn-fill" id="savePrices" style="padding:12px 24px;">
+              <span>💾</span>
+              <span>Simpan Perubahan Harga</span>
+            </button>
+            <button class="btn btn-ghost" id="resetDefaultPrices" style="padding:12px 20px;">
+              <span>↺</span>
+              <span>Reset ke Harga Standar</span>
+            </button>
+          </div>
+        </section>
+        <!-- SECTION 4: QRIS FOTO -->
+        <section id="qrView" class="admin-section">
+          <div class="section-header-box">
+            <span class="section-kicker">Metode Pembayaran</span>
+            <h2>Foto Barcode QRIS Warung</h2>
+            <p>Unggah foto barcode QRIS Anda. Gambar ini akan langsung ditampilkan kepada pelanggan saat mereka memilih pembayaran QRIS di halaman checkout.</p>
+          </div>
+
+          <div class="qris-admin-container">
+            <div>
+              <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; margin-bottom:12px; color:var(--admin-brown-dark);">Foto QRIS Saat Ini</h3>
+              <div class="qris-preview-box" id="qrCurrent">
+                <div class="qris-placeholder">
+                  <span>📷</span>
+                  <p>Belum ada foto QRIS yang diunggah.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.3rem; margin-bottom:12px; color:var(--admin-brown-dark);">Unggah Foto QRIS Baru</h3>
+              <p style="font-size:0.9rem; color:var(--admin-muted); margin-bottom:16px;">
+                Pilih file gambar foto QRIS dari galeri perangkat Anda (JPG, PNG).
+              </p>
+
+              <div class="form-group full" style="margin-bottom:16px;">
+                <label>Pilih File Foto QRIS</label>
+                <input type="file" accept="image/*" id="qrFile" style="padding:8px; border:1px solid var(--admin-border); border-radius:8px; width:100%;" />
+              </div>
+
+              <div class="form-group full" style="margin-bottom:20px;">
+                <label>Atau Masukkan URL Gambar QRIS</label>
+                <input type="url" id="qrUrlInput" placeholder="https://example.com/qris.jpg" style="width:100%; padding:10px 12px; border:1px solid var(--admin-border); border-radius:8px;" />
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn btn-fill" id="saveQris" style="flex:1;">
+                  <span>💾</span>
+                  <span>Simpan Foto QRIS</span>
+                </button>
+                <button class="btn btn-ghost" id="removeQris" style="color:#991b1b; border-color:#fca5a5;">
+                  <span>🗑️</span>
+                  <span>Hapus QRIS</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal untuk Bukti Bayar QRIS -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <img src="" id="lightboxImg" alt="Bukti Pembayaran Full" />
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Admin JavaScript -->
+  <script src="admin.js"></script>
+</body>
+</html>
+
+
+
+
+

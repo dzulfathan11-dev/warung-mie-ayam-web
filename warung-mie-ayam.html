@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warung Mie Ayam Mbak Ana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="warung-mie-ayam.css" />
+</head>
+
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="wrap nav-inner">
+            <a class="logo" href="#home"><span>🍜</span>Warung Mie Ayam Mbak Ana</a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home">Beranda</a>
+                <a href="#menu">Menu</a>
+                <a href="#cart">Pesan</a>
+                <a href="#contact">Kontak</a>
+            </div>
+            <a href="#cart" class="nav-cart" id="navCartBtn" aria-label="Keranjang">
+        🛒<span class="cart-badge" id="cartBadge">0</span>
+      </a>
+            <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+        <div class="nav-mobile" id="navMobile">
+            <button class="nav-mobile-close" id="closeMobile">&times;</button>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#cart">Pesan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <a href="#cart" class="nav-mobile-cart" id="mobileCartBtn">🛒 Keranjang <span id="mobileCartBadge">0</span></a>
+        </div>
+    </nav>
+
+    <main id="home">
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div class="hero-text">
+                    <span class="badge">Buka Setiap Hari · 08.00 – 21.00</span>
+                    <h1>Warung Mie Ayam<br/><span class="grad">Mbak Ana</span></h1>
+                    <p>Mie ayam, mie so, bakso, soto, dan minuman segar. Pilih makanan, masukkan ke keranjang, lalu checkout.</p>
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn btn-fill">Lihat Menu</a>
+                        <a href="#cart" class="btn btn-ghost">Lihat Keranjang</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb9wWMZd449ojIqhYTi_7IRi91fqJCHmfsby1gMI8Lhg&s=10" alt="Mie Ayam Mbak Ana" />
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="menu">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Menu Kami</span>
+                    <h2>Pilih Makanan &amp; Minuman</h2>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Makanan</h3>
+                    <div class="menu-grid">
+                        <article class="menu-card product-card" data-id="mie-ayam" data-tipe="makanan">
+                            <div class="prod-img"><img src="https://nibble-images.b-cdn.net/nibble/original_images/asal_usul_mie_ayam_01_0ace759bee.jpg" alt="Mie Ayam" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Populer</span>
+                                <h3>Mie Ayam</h3>
+                                <p class="prod-desc">Mie kenyal, ayam suwir, sawi, kuah kaldu hangat.</p>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-mie-ayam">7.000</span></span>
+                                </div>
+                                <div class="catatan-box"><label>Catatan:</label><input type="text" placeholder="contoh: pedas, jangan bawang" /></div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="mie-ayam">−</button><input type="number" class="qty-input" data-id="mie-ayam" value="1" min="1" /><button class="qty-plus" data-id="mie-ayam">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="mie-ayam">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card" data-id="mieso" data-tipe="makanan">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1u54N5Ri2R4SPlwvB7LcFW7Agoy09YcpgqTBbCcUXJw&s=10" alt="Mie So" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Baru</span>
+                                <h3>Mie So</h3>
+                                <p class="prod-desc">Gabungan mie dan bakso dalam satu mangkuk.</p>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-mieso">8.000</span></span>
+                                </div>
+                                <div class="catatan-box"><label>Catatan:</label><input type="text" placeholder="contoh: pedas" /></div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="mieso">−</button><input type="number" class="qty-input" data-id="mieso" value="1" min="1" /><button class="qty-plus" data-id="mieso">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="mieso">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card" data-id="bakso" data-tipe="makanan">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVqIds6VCgc-llVIz59Vlp0N_SiHRW44an0X0YB1GoyQ&s=10" alt="Bakso" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Favorit</span>
+                                <h3>Bakso</h3>
+                                <p class="prod-desc">Bakso daging sapi kenyal, kuah segar.</p>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-bakso">10.000</span></span>
+                                </div>
+                                <div class="catatan-box"><label>Catatan:</label><input type="text" placeholder="contoh: extra bakso" /></div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="bakso">−</button><input type="number" class="qty-input" data-id="bakso" value="1" min="1" /><button class="qty-plus" data-id="bakso">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="bakso">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card" data-id="soto" data-tipe="makanan">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFRrB2avFZW05Z-xScENGxnGu8zMKBcnbq2yx4ZAr3Eg&s=10" alt="Soto" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Segar</span>
+                                <h3>Soto</h3>
+                                <p class="prod-desc">Soto ayam kampung, kuah kuning nikmat.</p>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-soto">6.000</span></span>
+                                </div>
+                                <div class="catatan-box"><label>Catatan:</label><input type="text" placeholder="contoh: jangan kol" /></div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="soto">−</button><input type="number" class="qty-input" data-id="soto" value="1" min="1" /><button class="qty-plus" data-id="soto">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="soto">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>Minuman</h3>
+                    <div class="menu-grid">
+                        <article class="menu-card product-card drink-card" data-id="teh-jumbo" data-tipe="minuman">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvmFdgiSdpRr6HQqyhw-IZ59HZmUUFQ33zif7B51ZWOg&s=10" alt="Es Teh Jumbo" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Segar</span>
+                                <h3>Es Teh Jumbo</h3>
+                                <div class="temp-select"><button class="temp-btn active" data-id="teh-jumbo" data-temp="es">Es</button><button class="temp-btn" data-id="teh-jumbo" data-temp="hangat">Hangat</button></div>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-teh-jumbo">3.000</span></span>
+                                </div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="teh-jumbo">−</button><input type="number" class="qty-input" data-id="teh-jumbo" value="1" min="1" /><button class="qty-plus" data-id="teh-jumbo">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="teh-jumbo">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card drink-card" data-id="es-jeruk" data-tipe="minuman">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiXdS1SMRvqpdzHxpWg_khnktHp0aB56cNS4Zfie_huA&s=10" alt="Es Jeruk" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Segar</span>
+                                <h3>Es Jeruk</h3>
+                                <div class="temp-select"><button class="temp-btn active" data-id="es-jeruk" data-temp="es">Es</button><button class="temp-btn" data-id="es-jeruk" data-temp="hangat">Hangat</button></div>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-es-jeruk">3.000</span></span>
+                                </div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="es-jeruk">−</button><input type="number" class="qty-input" data-id="es-jeruk" value="1" min="1" /><button class="qty-plus" data-id="es-jeruk">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="es-jeruk">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card drink-card" data-id="kopi" data-tipe="minuman">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2Kr7YzUA21AVYCNLIPyc3C8dub0wN2sj25-GnPs0ydw&s=10" alt="Kopi" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Hangat</span>
+                                <h3>Kopi</h3>
+                                <div class="temp-select"><button class="temp-btn" data-id="kopi" data-temp="es">Es</button><button class="temp-btn active" data-id="kopi" data-temp="hangat">Hangat</button></div>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-kopi">4.000</span></span>
+                                </div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="kopi">−</button><input type="number" class="qty-input" data-id="kopi" value="1" min="1" /><button class="qty-plus" data-id="kopi">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="kopi">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card drink-card" data-id="juice" data-tipe="minuman">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWvz__XBzrwVw5Onaua73nfSqUBOhxNHPZC-dsOMW0PQ&s=10" alt="Juice" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Segar</span>
+                                <h3>Juice (Melon / Buah Naga)</h3>
+                                <div class="temp-select"><button class="temp-btn active" data-id="juice" data-temp="es">Es</button></div>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-juice">7.000</span></span>
+                                </div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="juice">−</button><input type="number" class="qty-input" data-id="juice" value="1" min="1" /><button class="qty-plus" data-id="juice">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="juice">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                        <article class="menu-card product-card drink-card" data-id="susu" data-tipe="minuman">
+                            <div class="prod-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAGKBsWQFLFm4eDHPgDJjA1Ki__eUYs1VkGj54zKB4ow&s=10" alt="Susu" /></div>
+                            <div class="card-body">
+                                <span class="card-tag">Segar</span>
+                                <h3>Susu</h3>
+                                <div class="temp-select"><button class="temp-btn active" data-id="susu" data-temp="es">Es</button><button class="temp-btn" data-id="susu" data-temp="hangat">Hangat</button></div>
+                                <div class="price-row"><span class="card-price">Rp <span id="price-susu">3.000</span></span>
+                                </div>
+                                <div class="qty-row"><label>Qty</label>
+                                    <div class="qty-control"><button class="qty-minus" data-id="susu">−</button><input type="number" class="qty-input" data-id="susu" value="1" min="1" /><button class="qty-plus" data-id="susu">+</button></div>
+                                </div>
+                                <button class="btn btn-fill btn-wide tambah-keranjang" data-produk="susu">Tambah ke Keranjang</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rating Section -->
+        <section class="section" id="rating">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Rating Pelanggan</span>
+                    <h2>Apa Kata Mereka?</h2>
+                </div>
+                <div class="menu-grid" id="ratingsList"></div>
+            </div>
+        </section>
+
+        <div id="ratingFormBox" style="display:none; margin-top:32px; max-width:500px; margin-left:auto; margin-right:auto;">
+            <div class="section-head" style="text-align:left;">
+                <span class="kicker">Beri Rating</span>
+                <h2>Berikan Rating untuk Pesanan Anda</h2>
+            </div>
+            <div class="card-body" style="background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:24px; max-width:480px; margin:0 auto;">
+                <div style="display:flex; gap:8px; justify-content:center; margin-bottom:16px;">
+                    <span class="rating-star" data-value="1" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+                    <span class="rating-star" data-value="2" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+                    <span class="rating-star" data-value="3" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+                    <span class="rating-star" data-value="4" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+                    <span class="rating-star" data-value="5" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+                </div>
+                <form id="customerRatingForm" style="display:grid; gap:12px;">
+                    <div class="form-group">
+                        <label>Nama Anda</label>
+                        <input type="text" id="ratingNama" placeholder="Contoh: Budi" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Komentar / Pesan</label>
+                        <textarea id="ratingComment" rows="3" placeholder="Bagaimana rasa dan pelayanan kami?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Foto (opsional)</label>
+                        <input type="file" accept="image/*" id="ratingFoto" />
+                    </div>
+                    <button type="submit" class="btn btn-fill btn-wide">Kirim Rating</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="kicker">Kontak</span>
+                    <h2>Kunjungi Warung Kami</h2>
+                </div>
+                <div class="contact-cards-grid">
+                    <div class="contact-card">
+                        <span class="contact-card-icon">📍</span>
+                        <strong>Alamat</strong>
+                        <p>Poncowidodo, Jl. Simo Kacangan, Candian, Blagung, Kec. Simo, Kabupaten Boyolali, Jawa Tengah 57377</p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-card-icon">📞</span>
+                        <strong>WhatsApp</strong>
+                        <p>087825016167</p>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-card-icon">🕒</span>
+                        <strong>Jam Buka</strong>
+                        <p>Setiap hari: 08.00 – 21.00 WIB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap footer-inner">
+            <span>© 2026 Warung Mie Ayam Mbak Ana</span>
+            <span class="footer-mid">Enak, Gurih, Legendaris</span>
+            <a href="#home" class="btn btn-ghost small">Kembali ke Atas</a>
+        </div>
+        <!-- Akses admin di bawah footer: samar tetapi tetap mudah diklik di PC dan HP. -->
+        <a href="admin.html" class="admin-hidden-link" aria-label="Akses admin" title="Akses admin">🔒</a>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2>Keranjang Belanja</h2>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-value" id="cartTotal">Rp 0</span>
+            </div>
+            <button class="btn btn-fill btn-wide" id="checkoutBtn">Checkout Sekarang</button>
+        </div>
+    </aside>
+
+    <!-- Username Modal -->
+    <div id="usernameModal" class="modal">
+        <div class="modal-content">
+            <div style="font-size:3rem; margin-bottom:16px;">👤</div>
+            <h2>Buat Profil</h2>
+            <p style="color:var(--muted); margin-bottom:20px;">Masukkan nama Anda. Ini akan digunakan saat pemesanan dan rating.</p>
+            <input type="text" id="usernameInput" placeholder="Nama Anda" style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); font-size:1rem; margin-bottom:16px;" />
+            <button class="btn btn-fill btn-wide" id="usernameSaveBtn">Simpan &amp; Masuk</button>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script>
+        /* ---------- State ---------- */
+        let cart = JSON.parse(localStorage.getItem('mbakana_cart')) || [];
+        const savedWa = localStorage.getItem('mbakana_wa') || '';
+        const savedAlamat = localStorage.getItem('mbakana_alamat') || '';
+        const savedUsername = localStorage.getItem('mbakana_username') || '';
+
+        const priceMapEl = {
+            'mie-ayam': 'price-mie-ayam',
+            'mieso': 'price-mieso',
+            'bakso': 'price-bakso',
+            'soto': 'price-soto',
+            'teh-jumbo': 'price-teh-jumbo',
+            'es-jeruk': 'price-es-jeruk',
+            'kopi': 'price-kopi',
+            'juice': 'price-juice',
+            'susu': 'price-susu',
+        };
+        const produkLabel = {
+            'mie-ayam': 'Mie Ayam',
+            'mieso': 'Mie So',
+            'bakso': 'Bakso',
+            'soto': 'Soto',
+            'teh-jumbo': 'Es Teh Jumbo',
+            'es-jeruk': 'Es Jeruk',
+            'kopi': 'Kopi',
+            'juice': 'Juice',
+            'susu': 'Susu',
+        };
+
+        /* ---------- Load saved prices ---------- */
+        function loadPrices() {
+            Object.keys(priceMapEl).forEach(id => {
+                const saved = localStorage.getItem('price_' + id);
+                const el = document.getElementById(priceMapEl[id]);
+                if (saved && el) el.textContent = Number(saved).toLocaleString('id-ID');
+            });
+        }
+        loadPrices();
+
+        /* ---------- Nav ---------- */
+        const nav = document.getElementById('nav');
+        const burger = document.getElementById('burger');
+        const closeMobile = document.getElementById('closeMobile');
+        const navMobile = document.getElementById('navMobile');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        }, {
+            passive: true
+        });
+
+        burger?.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+            burger.classList.toggle('open');
+        });
+        closeMobile?.addEventListener('click', () => {
+            navMobile.classList.remove('open');
+            burger.classList.remove('open');
+        });
+        navMobile?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            navMobile.classList.remove('open');
+            burger.classList.remove('open');
+        }));
+
+        /* ---------- Cart Functions ---------- */
+        function saveCart() {
+            localStorage.setItem('mbakana_cart', JSON.stringify(cart));
+            updateCartBadge();
+            renderCart();
+        }
+
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            const badges = document.querySelectorAll('.cart-badge, #mobileCartBadge');
+            badges.forEach(b => {
+                b.textContent = totalQty;
+                b.style.display = totalQty > 0 ? 'inline-block' : 'none';
+            });
+        }
+
+        function getPrice(id) {
+            const el = document.getElementById(priceMapEl[id]);
+            return el ? Number(el.textContent.replace(/\D/g, '')) : 0;
+        }
+
+        function addToCart(id) {
+            const btn = document.querySelector(`.tambah-keranjang[data-produk="${id}"]`);
+            if (!btn) return;
+            const card = btn.closest('.menu-card');
+            const tipe = card.getAttribute('data-tipe');
+            let temp = '';
+            if (tipe === 'minuman') {
+                const active = card.querySelector('.temp-btn.active');
+                temp = active ? active.getAttribute('data-temp') : '';
+            }
+            const catatanInput = card.querySelector('.catatan-box input');
+            const catatan = catatanInput ? catatanInput.value : '';
+            const qtyInput = card.querySelector('.qty-input');
+            const qty = Number(qtyInput.value) || 1;
+
+            const existing = cart.find(i => i.id === id && i.temp === temp && i.catatan === catatan);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({
+                    id,
+                    name: produkLabel[id],
+                    price: getPrice(id),
+                    qty,
+                    temp,
+                    catatan,
+                    tipe
+                });
+            }
+            saveCart();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty < 1) item.qty = 1;
+            saveCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+
+        function openCart() {
+            document.getElementById('cartOverlay').classList.add('open');
+            document.getElementById('cartDrawer').classList.add('open');
+            renderCart();
+        }
+
+        function closeCart() {
+            document.getElementById('cartOverlay').classList.remove('open');
+            document.getElementById('cartDrawer').classList.remove('open');
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            if (!container) return;
+            const totalEl = document.getElementById('cartTotal');
+            container.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px;">Keranjang masih kosong.</p>';
+                totalEl.textContent = 'Rp 0';
+                document.getElementById('checkoutBtn').style.display = 'none';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                        const subtotal = item.price * item.qty;
+                        total += subtotal;
+                        const el = document.createElement('div');
+                        el.className = 'cart-item';
+                        el.innerHTML = `
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}${item.temp ? ` (${item.temp})` : ''}</div>
+            <div class="cart-item-meta">${item.catatan ? `Catatan: ${item.catatan}` : ''} · Rp ${item.price.toLocaleString('id-ID')}</div>
+            <div class="cart-item-qty">
+              <button class="qty-minus-cart" data-index="${index}">−</button>
+              <span>${item.qty}</span>
+              <button class="qty-plus-cart" data-index="${index}">+</button>
+            </div>
+          </div>
+          <div class="cart-item-price">Rp ${subtotal.toLocaleString('id-ID')}</div>
+          <button class="cart-item-remove" data-index="${index}">Hapus</button>
+        `;
+        container.appendChild(el);
+      });
+
+      totalEl.textContent = 'Rp ' + total.toLocaleString('id-ID');
+      document.getElementById('checkoutBtn').style.display = 'block';
+
+      container.querySelectorAll('.qty-minus-cart').forEach(btn => {
+        btn.addEventListener('click', () => { changeQty(cart[Number(btn.dataset.index)].id, -1); });
+      });
+      container.querySelectorAll('.qty-plus-cart').forEach(btn => {
+        btn.addEventListener('click', () => { changeQty(cart[Number(btn.dataset.index)].id, 1); });
+      });
+      container.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => { removeFromCart(Number(btn.dataset.index)); });
+      });
+    }
+
+    /* ---------- Cart Events ---------- */
+    document.getElementById('cartOverlay')?.addEventListener('click', closeCart);
+    document.getElementById('cartClose')?.addEventListener('click', closeCart);
+
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    checkoutBtn?.addEventListener('click', () => {
+      if (cart.length === 0) return;
+      location.href = 'checkout.html';
+    });
+
+    document.getElementById('navCartBtn')?.addEventListener('click', (e) => { e.preventDefault(); openCart(); });
+    document.getElementById('mobileCartBtn')?.addEventListener('click', (e) => { e.preventDefault(); navMobile.classList.remove('open'); burger.classList.remove('open'); openCart(); });
+    document.querySelectorAll('a[href="#cart"]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); openCart(); }));
+
+    document.querySelectorAll('.tambah-keranjang').forEach(btn => {
+      btn.addEventListener('click', () => addToCart(btn.getAttribute('data-produk')));
+    });
+    document.querySelectorAll('.qty-plus').forEach(btn => {
+      btn.addEventListener('click', () => { const id = btn.dataset.id; const input = document.querySelector(`.qty-input[data-id="${id}"]`); input.value = Number(input.value) + 1; });
+    });
+    document.querySelectorAll('.qty-minus').forEach(btn => {
+      btn.addEventListener('click', () => { const id = btn.dataset.id; const input = document.querySelector(`.qty-input[data-id="${id}"]`); input.value = Math.max(1, Number(input.value) - 1); });
+    });
+
+    document.querySelectorAll('.temp-btn').forEach(btn => {
+      btn.addEventListener('click', () => { const parent = btn.closest('.temp-select'); parent.querySelectorAll('.temp-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); });
+    });
+
+    /* ---------- Rating System ---------- */
+    const ratingFormEl = document.getElementById('customerRatingForm');
+    const ratingStars = document.querySelectorAll('#customerRatingForm .rating-star');
+    const ratingNama = document.getElementById('ratingNama');
+    const ratingComment = document.getElementById('ratingComment');
+    const ratingFoto = document.getElementById('ratingFoto');
+    const ratingFormBox = document.getElementById('ratingFormBox');
+    let selectedRating = 0;
+
+    if (savedUsername) ratingNama.value = savedUsername;
+
+    function renderRatings() {
+      const container = document.getElementById('ratingsList');
+      if (!container) return;
+      const ratings = JSON.parse(localStorage.getItem('mbakana_ratings') || '[]');
+      container.innerHTML = '';
+      if (ratings.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px;">Belum ada rating. Jadilah yang pertama setelah pesanan!</p>';
+        return;
+      }
+      ratings.slice().reverse().forEach(r => {
+        const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+        const fotoHtml = r.foto ? `<img src="${r.foto}" alt="Foto Rating" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;border:1px solid var(--line); margin-top:10px; display:block; margin-left:auto; margin-right:auto;" />` : '';
+        const el = document.createElement('div');
+        el.className = 'rating-card';
+        el.innerHTML = `
+          <div class="stars">${stars}</div>
+          ${fotoHtml}
+          <div class="comment">${r.comment}</div>
+          <div class="rating-name">- ${r.nama} (${r.time})</div>
+        `;
+        container.appendChild(el);
+      });
+    }
+
+    ratingStars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = Number(star.dataset.value);
+        ratingStars.forEach(s => {
+          s.textContent = Number(s.dataset.value) <= selectedRating ? '★' : '☆';
+          s.style.color = Number(s.dataset.value) <= selectedRating ? 'var(--orange)' : '#ccc';
+        });
+      });
+    });
+
+    if (ratingFormEl) {
+      ratingFormEl.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!selectedRating || !ratingNama.value.trim() || !ratingComment.value.trim()) {
+          showToast('Isi bintang, nama, dan komentar terlebih dahulu.', 'error');
+          return;
+        }
+        let foto = '';
+        if (ratingFoto && ratingFoto.files.length > 0) {
+          foto = await readFileAsDataURL(ratingFoto.files[0]);
+        }
+        const ratings = JSON.parse(localStorage.getItem('mbakana_ratings') || '[]');
+        ratings.push({
+          nama: ratingNama.value.trim(),
+          rating: selectedRating,
+          comment: ratingComment.value.trim(),
+          foto,
+          time: new Date().toLocaleString('id-ID')
+        });
+        localStorage.setItem('mbakana_ratings', JSON.stringify(ratings));
+        renderRatings();
+        ratingFormEl.reset();
+        ratingFormEl.style.display = 'none';
+        selectedRating = 0;
+        ratingStars.forEach(s => { s.textContent = '☆'; s.style.color = '#ccc'; });
+        showToast('Terima kasih atas rating Anda!');
+      });
+    }
+
+    /* ---------- Username / Profil ---------- */
+    const usernameModal = document.getElementById('usernameModal');
+    const usernameInput = document.getElementById('usernameInput');
+    const usernameSaveBtn = document.getElementById('usernameSaveBtn');
+
+    function showUsernameModal() {
+      if (!savedUsername) {
+        usernameModal.style.display = 'flex';
+      }
+    }
+
+    usernameSaveBtn?.addEventListener('click', () => {
+      const val = usernameInput.value.trim();
+      if (!val) {
+        showToast('Nama wajib diisi.', 'error');
+        return;
+      }
+      localStorage.setItem('mbakana_username', val);
+      usernameModal.style.display = 'none';
+      showToast('Halo ' + val + '! Selamat datang di Warung Mie Ayam Mbak Ana.');
+    });
+
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      t.textContent = msg;
+      container.appendChild(t);
+      setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(120%)';
+        setTimeout(() => t.remove(), 300);
+      }, 2500);
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(file); });
+    }
+
+    /* ---------- Init ---------- */
+    updateCartBadge();
+    renderRatings();
+    showUsernameModal();
+    </script>
+</body>
+
+</html>

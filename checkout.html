@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Warung Mie Ayam Mbak Ana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="warung-mie-ayam.css" />
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="warung-mie-ayam.html"><span>🍜</span>Warung Mie Ayam Mbak Ana</a>
+      <a href="checkout.html" class="nav-cart" id="navCartBtn" aria-label="Keranjang">
+        🛒<span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <button class="nav-mobile-close" id="closeMobile">&times;</button>
+      <ul>
+        <li><a href="warung-mie-ayam.html">Beranda</a></li>
+        <li><a href="warung-mie-ayam.html#menu">Menu</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><a href="warung-mie-ayam.html#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top:20px;">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Checkout</span>
+          <h2>Detail Pemesanan</h2>
+        </div>
+
+        <div class="checkout-grid">
+          <!-- Keranjang ringkasan -->
+          <div class="checkout-form-col">
+            <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.5rem; color:var(--text); margin-bottom:16px;">Ringkasan Keranjang</h3>
+            <div id="checkoutCartItems"></div>
+            <div class="cart-total" style="margin-top:16px; padding-top:16px; border-top:1px solid var(--line);">
+              <span>Total</span>
+              <span class="cart-total-value" id="checkoutTotal">Rp 0</span>
+            </div>
+            <a href="warung-mie-ayam.html#cart" class="btn btn-ghost btn-wide" style="margin-top:12px;">Kembali ke Keranjang</a>
+          </div>
+
+          <!-- Form pemesanan -->
+          <div class="checkout-summary-col">
+            <form id="checkoutForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Nama Lengkap</label>
+                  <input type="text" id="orderNama" placeholder="Contoh: Budi Santoso" required />
+                </div>
+                <div class="form-group">
+                  <label>Nomor HP / WA</label>
+                  <input type="tel" id="orderWa" placeholder="08123456789" required />
+                </div>
+                <div class="form-group full">
+                  <label>Alamat Lengkap</label>
+                  <textarea id="orderAlamat" rows="3" placeholder="Contoh: Jl. Merdeka No. 12, RT 01/RW 02, Kelurahan, Kecamatan, Kota" required></textarea>
+                </div>
+                <div class="form-group full order-type">
+                  <label>Jenis Pemesanan</label>
+                  <div class="toggle-group" id="jenisToggle">
+                    <button type="button" class="toggle-btn active" data-value="Ambil">Ambil Langsung di Warung</button>
+                    <button type="button" class="toggle-btn" data-value="Antar">Antar ke Alamat Saya</button>
+                  </div>
+                  <input type="hidden" name="jenis" value="Ambil" />
+                </div>
+                <div class="form-group full payment-method">
+                  <label>Metode Pembayaran</label>
+                  <div class="toggle-group" id="bayarToggle">
+                    <button type="button" class="toggle-btn active" data-value="QRIS">QRIS</button>
+                    <button type="button" class="toggle-btn" data-value="Cash">Cash / Tunai saat terima pesanan</button>
+                  </div>
+                  <input type="hidden" name="bayar" value="QRIS" />
+                  <div class="qr-section" id="qrSection">
+                    <div class="qr-box">
+                      <div class="qr-placeholder" id="qrPreview"><span>📷</span><p>Scan QRIS di sini</p><small>Foto QR diupload oleh admin</small></div>
+                    </div>
+                    <div class="form-group full bukti-upload" style="margin-top:10px;">
+                      <label>Upload Bukti Pembayaran QRIS</label>
+                      <div class="file-upload">
+                        <input type="file" accept="image/*" id="buktiQris" />
+                        <span class="file-btn">Pilih Foto</span>
+                        <span class="file-name" id="fileName">Belum ada file</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-fill btn-wide checkout-submit">Kirim Pesanan ke Warung</button>
+            </form>
+            <div class="order-status" id="checkoutStatus"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 Warung Mie Ayam Mbak Ana</span>
+      <span class="footer-mid">Enak, Gurih, Legendaris</span>
+      <a href="warung-mie-ayam.html" class="btn btn-ghost small">Kembali ke Beranda</a>
+    </div>
+    <!-- Akses admin di bawah footer: samar tetapi tetap mudah diklik di PC dan HP. -->
+    <a href="admin.html" class="admin-hidden-link" aria-label="Akses admin" title="Akses admin">🔒</a>
+  </footer>
+
+  <!-- Username Modal -->
+  <div id="usernameModal" class="modal">
+    <div class="modal-content">
+      <div style="font-size:3rem; margin-bottom:16px;">👤</div>
+      <h2>Buat Profil</h2>
+      <p style="color:var(--muted); margin-bottom:20px;">Masukkan nama Anda. Ini akan digunakan saat pemesanan dan rating.</p>
+      <input type="text" id="usernameInput" placeholder="Nama Anda" style="width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); font-size:1rem; margin-bottom:16px;" />
+      <button class="btn btn-fill btn-wide" id="usernameSaveBtn">Simpan &amp; Lanjutkan</button>
+    </div>
+  </div>
+
+  <!-- Rating Form (tampil setelah pesan sukses) -->
+  <div id="ratingFormBox" style="display:none; margin-top:24px; max-width:500px; margin-left:auto; margin-right:auto;">
+    <div class="section-head" style="text-align:left;">
+      <span class="kicker">Beri Rating</span>
+      <h2>Berikan Rating untuk Pesanan Anda</h2>
+    </div>
+    <div class="card-body" style="background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:24px; max-width:480px; margin:0 auto;">
+      <div style="display:flex; gap:8px; justify-content:center; margin-bottom:16px;">
+        <span class="rating-star" data-value="1" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+        <span class="rating-star" data-value="2" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+        <span class="rating-star" data-value="3" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+        <span class="rating-star" data-value="4" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+        <span class="rating-star" data-value="5" style="font-size:2rem; color:#ccc; cursor:pointer;">☆</span>
+      </div>
+      <form id="checkoutRatingForm" style="display:grid; gap:12px;">
+        <div class="form-group">
+          <label>Nama Anda</label>
+          <input type="text" id="checkoutRatingNama" placeholder="Contoh: Budi" required />
+        </div>
+        <div class="form-group">
+          <label>Komentar / Pesan</label>
+          <textarea id="checkoutRatingComment" rows="3" placeholder="Bagaimana rasa dan pelayanan kami?" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Upload Foto (opsional)</label>
+          <input type="file" accept="image/*" id="checkoutRatingFoto" />
+        </div>
+        <button type="submit" class="btn btn-fill btn-wide">Kirim Rating &amp; Selesai</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    /* ---------- State ---------- */
+    let cart = JSON.parse(localStorage.getItem('mbakana_cart')) || [];
+    const savedWa = localStorage.getItem('mbakana_wa') || '';
+    const savedAlamat = localStorage.getItem('mbakana_alamat') || '';
+    const savedUsername = localStorage.getItem('mbakana_username') || '';
+
+    const cartItemsContainer = document.getElementById('checkoutCartItems');
+    const totalEl = document.getElementById('checkoutTotal');
+
+    function renderCheckoutCart() {
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p style="text-align:center;color:var(--muted);padding:24px;">Keranjang masih kosong.</p>';
+        totalEl.textContent = 'Rp 0';
+        return;
+      }
+
+      cart.forEach(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        const div = document.createElement('div');
+        div.className = 'summary-item';
+        div.innerHTML = `
+          <span>${item.name}${item.temp ? ` (${item.temp})` : ''} x${item.qty}${item.catatan ? ` (${item.catatan})` : ''}</span>
+          <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
+        `;
+        cartItemsContainer.appendChild(div);
+      });
+
+      totalEl.textContent = 'Rp ' + total.toLocaleString('id-ID');
+    }
+    renderCheckoutCart();
+
+    const badge = document.getElementById('cartBadge');
+    const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+    if (badge) { badge.textContent = totalQty; badge.style.display = totalQty > 0 ? 'inline-block' : 'none'; }
+
+    /* ---------- Order Form ---------- */
+    const orderNama = document.getElementById('orderNama');
+    const orderWa = document.getElementById('orderWa');
+    const orderAlamat = document.getElementById('orderAlamat');
+    const buktiInput = document.getElementById('buktiQris');
+    const qrPreview = document.getElementById('qrPreview');
+    const qrSection = document.getElementById('qrSection');
+
+    if (savedUsername) orderNama.value = savedUsername;
+    if (savedWa) orderWa.value = savedWa;
+    if (savedAlamat) orderAlamat.value = savedAlamat;
+
+    orderWa?.addEventListener('input', () => localStorage.setItem('mbakana_wa', orderWa.value));
+    orderAlamat?.addEventListener('input', () => localStorage.setItem('mbakana_alamat', orderAlamat.value));
+
+    // Toggle jenis
+    const jenisToggle = document.getElementById('jenisToggle');
+    const jenisInput = document.querySelector('input[name="jenis"]');
+    if (jenisToggle) {
+      jenisToggle.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          jenisToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          jenisInput.value = btn.dataset.value;
+        });
+      });
+    }
+
+    // Toggle bayar
+    const bayarToggle = document.getElementById('bayarToggle');
+    const bayarInput = document.querySelector('input[name="bayar"]');
+    if (bayarToggle) {
+      bayarToggle.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          bayarToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          bayarInput.value = btn.dataset.value;
+          qrSection.style.display = btn.dataset.value === 'QRIS' ? 'block' : 'none';
+        });
+      });
+    }
+
+    // File upload
+    const fileInput = document.getElementById('buktiQris');
+    const fileBtn = document.querySelector('.file-btn');
+    const fileName = document.getElementById('fileName');
+    if (fileInput && fileBtn) {
+      fileBtn.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          fileName.textContent = file.name;
+          const reader = new FileReader();
+          reader.onload = (ev) => { qrPreview.innerHTML = `<img src="${ev.target.result}" alt="Bukti QRIS" style="width:100%;height:180px;object-fit:cover;border-radius:12px;" />`; };
+          reader.readAsDataURL(file);
+        } else {
+          fileName.textContent = 'Belum ada file';
+        }
+      });
+    }
+
+    const savedQris = localStorage.getItem('qris_mbakana');
+    if (savedQris && qrPreview) {
+      qrPreview.innerHTML = `<img src="${savedQris}" alt="QRIS" style="width:100%;height:180px;object-fit:cover;border-radius:12px;" />`;
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(file); });
+    }
+
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      t.textContent = msg;
+      container.appendChild(t);
+      setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(120%)';
+        setTimeout(() => t.remove(), 300);
+      }, 2500);
+    }
+
+    /* ---------- Username ---------- */
+    const usernameModal = document.getElementById('usernameModal');
+    const usernameInput = document.getElementById('usernameInput');
+    const usernameSaveBtn = document.getElementById('usernameSaveBtn');
+
+    function requireUsername() {
+      if (!savedUsername) {
+        usernameModal.style.display = 'flex';
+        return false;
+      }
+      return true;
+    }
+
+    usernameSaveBtn?.addEventListener('click', () => {
+      const val = usernameInput.value.trim();
+      if (!val) {
+        showToast('Nama wajib diisi.', 'error');
+        return;
+      }
+      localStorage.setItem('mbakana_username', val);
+      usernameModal.style.display = 'none';
+      showToast('Halo ' + val + '! Silakan lengkapi pemesanan.');
+    });
+
+    /* ---------- Order Form Submit ---------- */
+    const form = document.getElementById('checkoutForm');
+    if (form) {
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (!requireUsername()) return;
+
+        const nama = orderNama.value.trim();
+        const hp = orderWa.value.trim();
+        const alamat = orderAlamat.value.trim();
+        const jenis = form.querySelector('input[name="jenis"]').value;
+        const bayar = form.querySelector('input[name="bayar"]').value;
+
+        let bukti = false;
+        let buktiImage = '';
+        if (buktiInput && buktiInput.files.length > 0) {
+          bukti = true;
+          buktiImage = await readFileAsDataURL(buktiInput.files[0]);
+        }
+
+        if (!nama || !hp || !alamat || cart.length === 0) {
+          showToast('Isi semua kolom wajib dan pastikan keranjang tidak kosong.', 'error');
+          return;
+        }
+
+        const order = {
+          id: Date.now(),
+          time: new Date().toLocaleString('id-ID'),
+          nama, hp, alamat, jenis, bayar, bukti, buktiImage,
+          items: cart.map(i => ({...i})),
+          total: cart.reduce((s,i)=>s+(i.price*i.qty),0),
+          status: 'baru'
+        };
+        const orders = JSON.parse(localStorage.getItem('mbakana_orders') || '[]');
+        orders.push(order);
+        localStorage.setItem('mbakana_orders', JSON.stringify(orders));
+
+        cart = [];
+        localStorage.setItem('mbakana_cart', JSON.stringify(cart));
+        const badge = document.getElementById('cartBadge');
+        if (badge) { badge.textContent = '0'; badge.style.display = 'none'; }
+
+        showToast('Pesanan berhasil dikirim ke kami.');
+        form.reset();
+        orderNama.value = savedUsername;
+        orderWa.value = savedWa;
+        orderAlamat.value = savedAlamat;
+
+        // Tampilkan form rating setelah pesanan berhasil
+        const ratingFormBox = document.getElementById('ratingFormBox');
+        if (ratingFormBox) ratingFormBox.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    /* ---------- Rating Form (checkout) ---------- */
+    const checkoutRatingForm = document.getElementById('checkoutRatingForm');
+    const checkoutRatingStars = document.querySelectorAll('#checkoutRatingForm .rating-star');
+    const checkoutRatingNama = document.getElementById('checkoutRatingNama');
+    const checkoutRatingComment = document.getElementById('checkoutRatingComment');
+    const checkoutRatingFoto = document.getElementById('checkoutRatingFoto');
+    let checkoutSelectedRating = 0;
+
+    if (savedUsername) checkoutRatingNama.value = savedUsername;
+
+    checkoutRatingStars.forEach(star => {
+      star.addEventListener('click', () => {
+        checkoutSelectedRating = Number(star.dataset.value);
+        checkoutRatingStars.forEach(s => {
+          s.textContent = Number(s.dataset.value) <= checkoutSelectedRating ? '★' : '☆';
+          s.style.color = Number(s.dataset.value) <= checkoutSelectedRating ? 'var(--orange)' : '#ccc';
+        });
+      });
+    });
+
+    if (checkoutRatingForm) {
+      checkoutRatingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!checkoutSelectedRating || !checkoutRatingNama.value.trim() || !checkoutRatingComment.value.trim()) {
+          showToast('Isi bintang, nama, dan komentar terlebih dahulu.', 'error');
+          return;
+        }
+
+        let foto = '';
+        if (checkoutRatingFoto && checkoutRatingFoto.files.length > 0) {
+          foto = await readFileAsDataURL(checkoutRatingFoto.files[0]);
+        }
+
+        const ratings = JSON.parse(localStorage.getItem('mbakana_ratings') || '[]');
+        ratings.push({
+          nama: checkoutRatingNama.value.trim(),
+          rating: checkoutSelectedRating,
+          comment: checkoutRatingComment.value.trim(),
+          foto,
+          time: new Date().toLocaleString('id-ID')
+        });
+        localStorage.setItem('mbakana_ratings', JSON.stringify(ratings));
+
+        showToast('Terima kasih atas rating Anda!');
+        checkoutRatingForm.reset();
+        checkoutRatingStars.forEach(s => { s.textContent = '☆'; s.style.color = '#ccc'; });
+        checkoutSelectedRating = 0;
+        setTimeout(() => { location.href = 'warung-mie-ayam.html'; }, 1000);
+      });
+    }
+  </script>
+</body>
+</html>
