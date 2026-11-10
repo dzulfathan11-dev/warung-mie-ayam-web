@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/", "destination": "/warung-mie-ayam.html" }]
+}
